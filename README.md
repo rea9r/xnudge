@@ -1,3 +1,5 @@
+<img src="icons/icon-128.png" alt="xnudge" width="64" align="right" />
+
 # xnudge
 
 Chrome extension to nudge X (Twitter) into a more comfortable look.
