@@ -2,6 +2,8 @@
 
 Chrome extension to nudge X (Twitter) into a more comfortable look.
 
+![xnudge popup with theme presets](store-assets/screenshots/screenshot-options.png)
+
 ## What it does
 
 - **Theme overrides** — repaint background, modals, borders, text, and links from a single curated palette.
@@ -15,6 +17,7 @@ Chrome extension to nudge X (Twitter) into a more comfortable look.
 npm install
 npm run dev       # Vite dev server with HMR via @crxjs/vite-plugin
 npm run build     # production build to dist/
+npm run zip       # build and bundle dist/ into xnudge.zip for the Web Store
 npm run typecheck
 npm run lint
 npm run format
