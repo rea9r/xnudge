@@ -4,8 +4,8 @@ Chrome extension to nudge X (Twitter) into a more comfortable look.
 
 ## What it does
 
-- **Theme overrides** — bring back the navy "Dim" feel, or pick your own colors for background, modals, borders, text, and links.
-- **Presets** — built-in palettes (legacy Dim navy, true black, custom) so you don't re-pick five colors every time.
+- **Theme overrides** — repaint background, modals, borders, text, and links from a single curated palette.
+- **Presets** — built-in palettes selectable from the popup, so you don't re-pick colors every time.
 - **Resilient to UI changes** — keeps working when X tweaks its layout, instead of breaking on every release.
 
 ## Development

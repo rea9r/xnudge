@@ -17,13 +17,13 @@ xnudge nudges X (Twitter) into a more comfortable look by overriding its theme t
 **Features**
 
 - One-click toggle from the toolbar popup.
-- Curated presets — the first ships with a Dim navy palette that restores the classic navy look.
+- Curated presets — Dim navy (the classic), Lights Out (pure black, OLED-friendly), Sepia (warm cream), Forest (deep green).
 - Dynamic detection that follows X's frequent UI changes, so the theme keeps up when X renames or restyles its components.
 - No accounts, no tracking, no servers — settings stay in your browser via Chrome's storage.sync.
 
 **How it works**
 
-xnudge injects a stylesheet into x.com (and twitter.com) that overrides background, modal, link, and border colors using the active preset. It also scans the page's stylesheets on load and as the DOM evolves, applying matching overrides to dynamically-named classes.
+xnudge injects a stylesheet into x.com (and twitter.com) that overrides background, modal, border, text, and link colors using the active preset. It also scans the page's stylesheets on load and as the DOM evolves, applying matching overrides to dynamically-named classes.
 
 **Privacy**
 
