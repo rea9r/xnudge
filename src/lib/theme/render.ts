@@ -1,4 +1,12 @@
 import type { Theme } from "./types";
+import {
+  rgbCss,
+  X_BRAND_BLUE,
+  X_BUTTON_BG,
+  X_MUTED_TEXT,
+  X_ON_BUTTON_TEXT,
+  X_PRIMARY_TEXT,
+} from "./x-colors";
 
 const HEX_RE = /^#?([0-9a-fA-F]{6})$/;
 
@@ -106,28 +114,28 @@ ${prefix} [role="link"][style^="color:"] {
   color: inherit !important;
 }
 
-${prefix} a[style*="rgb(29, 155, 240)"],
-${prefix} [role="link"][style*="rgb(29, 155, 240)"] {
+${prefix} a[style*="${rgbCss(X_BRAND_BLUE)}"],
+${prefix} [role="link"][style*="${rgbCss(X_BRAND_BLUE)}"] {
   color: ${link} !important;
 }
 
-${prefix} [style*=" color: rgb(231, 233, 234)"],
-${prefix} [style^="color: rgb(231, 233, 234)"] {
+${prefix} [style*=" color: ${rgbCss(X_PRIMARY_TEXT)}"],
+${prefix} [style^="color: ${rgbCss(X_PRIMARY_TEXT)}"] {
   color: ${text} !important;
 }
 
-${prefix} [style*=" color: rgb(113, 118, 123)"],
-${prefix} [style^="color: rgb(113, 118, 123)"] {
+${prefix} [style*=" color: ${rgbCss(X_MUTED_TEXT)}"],
+${prefix} [style^="color: ${rgbCss(X_MUTED_TEXT)}"] {
   color: ${textMuted} !important;
 }
 
-${prefix} [style*=" background-color: rgb(239, 243, 244)"],
-${prefix} [style^="background-color: rgb(239, 243, 244)"] {
+${prefix} [style*=" background-color: ${rgbCss(X_BUTTON_BG)}"],
+${prefix} [style^="background-color: ${rgbCss(X_BUTTON_BG)}"] {
   background-color: ${buttonBg} !important;
 }
 
-${prefix} [style*=" color: rgb(15, 20, 25)"],
-${prefix} [style^="color: rgb(15, 20, 25)"] {
+${prefix} [style*=" color: ${rgbCss(X_ON_BUTTON_TEXT)}"],
+${prefix} [style^="color: ${rgbCss(X_ON_BUTTON_TEXT)}"] {
   color: ${buttonText} !important;
 }
 

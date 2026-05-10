@@ -1,3 +1,11 @@
+import {
+  X_BUTTON_BG,
+  X_MUTED_TEXT,
+  X_ON_BUTTON_TEXT,
+  X_PRIMARY_TEXT,
+  type RgbTuple,
+} from "./x-colors";
+
 export type DimKind =
   | "navy"
   | "gray0"
@@ -33,6 +41,10 @@ function parseRgb(input: string): Rgb | null {
   };
 }
 
+function matchesRgb(rgb: Rgb, [r, g, b]: RgbTuple): boolean {
+  return rgb.r === r && rgb.g === g && rgb.b === b;
+}
+
 export function classifyBackground(input: string): DimMatch | null {
   const rgb = parseRgb(input);
   if (!rgb) return null;
@@ -50,17 +62,16 @@ export function classifyBackground(input: string): DimMatch | null {
   if (r < 25 && g < 30 && b < 35) return { kind: "navy" };
   if (r < 35 && g < 40 && b < 45) return { kind: "gray0" };
   if (r < 50 && g < 55 && b < 60) return { kind: "gray100" };
-  if (r === 239 && g === 243 && b === 244) return { kind: "button" };
+  if (matchesRgb(rgb, X_BUTTON_BG)) return { kind: "button" };
   return null;
 }
 
 export function classifyTextColor(input: string): TextMatch | null {
   const rgb = parseRgb(input);
   if (!rgb) return null;
-  const { r, g, b, a } = rgb;
-  if (a < 1) return null;
-  if (r === 231 && g === 233 && b === 234) return { kind: "primary" };
-  if (r === 113 && g === 118 && b === 123) return { kind: "muted" };
-  if (r === 15 && g === 20 && b === 25) return { kind: "on-button" };
+  if (rgb.a < 1) return null;
+  if (matchesRgb(rgb, X_PRIMARY_TEXT)) return { kind: "primary" };
+  if (matchesRgb(rgb, X_MUTED_TEXT)) return { kind: "muted" };
+  if (matchesRgb(rgb, X_ON_BUTTON_TEXT)) return { kind: "on-button" };
   return null;
 }
