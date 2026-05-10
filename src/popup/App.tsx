@@ -8,6 +8,7 @@ import {
 import { presets } from "../lib/theme/presets";
 import { CUSTOM_PRESET_ID } from "../lib/theme/resolve";
 import type { ThemeColors } from "../lib/theme/types";
+import { PresetCard } from "./PresetCard";
 
 const SAVE_DEBOUNCE_MS = 150;
 
@@ -96,74 +97,29 @@ export function App() {
         aria-label="Theme preset"
         data-disabled={!enabled}
       >
-        {presets.map((preset) => {
-          const selected = preset.id === presetId;
-          return (
-            <li key={preset.id}>
-              <button
-                type="button"
-                className="preset"
-                role="radio"
-                aria-checked={selected}
-                onClick={() => selectPreset(preset.id)}
-                data-selected={selected}
-              >
-                <span className="swatches" aria-hidden="true">
-                  <span
-                    className="swatch"
-                    style={{ background: preset.colors.background }}
-                  />
-                  <span
-                    className="swatch"
-                    style={{ background: preset.colors.text }}
-                  />
-                  <span
-                    className="swatch"
-                    style={{ background: preset.colors.link }}
-                  />
-                </span>
-                <span className="preset-text">
-                  <span className="preset-label">{preset.label}</span>
-                  {preset.description && (
-                    <span className="preset-description">
-                      {preset.description}
-                    </span>
-                  )}
-                </span>
-              </button>
-            </li>
-          );
-        })}
+        {presets.map((preset) => (
+          <li key={preset.id}>
+            <PresetCard
+              selected={preset.id === presetId}
+              onSelect={() => selectPreset(preset.id)}
+              background={preset.colors.background}
+              text={preset.colors.text}
+              link={preset.colors.link}
+              label={preset.label}
+              description={preset.description}
+            />
+          </li>
+        ))}
         <li>
-          <button
-            type="button"
-            className="preset"
-            role="radio"
-            aria-checked={customSelected}
-            onClick={() => selectPreset(CUSTOM_PRESET_ID)}
-            data-selected={customSelected}
-          >
-            <span className="swatches" aria-hidden="true">
-              <span
-                className="swatch"
-                style={{ background: customColors.background }}
-              />
-              <span
-                className="swatch"
-                style={{ background: customColors.text }}
-              />
-              <span
-                className="swatch"
-                style={{ background: customColors.link }}
-              />
-            </span>
-            <span className="preset-text">
-              <span className="preset-label">Custom</span>
-              <span className="preset-description">
-                Pick your own colors below.
-              </span>
-            </span>
-          </button>
+          <PresetCard
+            selected={customSelected}
+            onSelect={() => selectPreset(CUSTOM_PRESET_ID)}
+            background={customColors.background}
+            text={customColors.text}
+            link={customColors.link}
+            label="Custom"
+            description="Pick your own colors below."
+          />
         </li>
       </ul>
 
