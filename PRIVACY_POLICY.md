@@ -10,6 +10,7 @@ xnudge uses Chrome's `storage.sync` API to remember your preferences:
 
 - Whether the theme override is enabled
 - The active preset
+- Your custom palette colors, if you've edited them
 
 These values are stored by Chrome and synced across the devices where you are signed in with the same Google account. They never leave Chrome.
 

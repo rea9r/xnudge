@@ -6,6 +6,7 @@ Chrome extension to nudge X (Twitter) into a more comfortable look.
 
 - **Theme overrides** — repaint background, modals, borders, text, and links from a single curated palette.
 - **Presets** — built-in palettes selectable from the popup, so you don't re-pick colors every time.
+- **Custom palette** — pick your own colors when none of the presets fit.
 - **Resilient to UI changes** — keeps working when X tweaks its layout, instead of breaking on every release.
 
 ## Development

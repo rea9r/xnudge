@@ -18,6 +18,7 @@ xnudge nudges X (Twitter) into a more comfortable look by overriding its theme t
 
 - One-click toggle from the toolbar popup.
 - Curated presets — Dim navy (the classic), Lights Out (pure black, OLED-friendly), Sepia (warm cream), Forest (deep green).
+- Custom palette — pick your own background, text, link, and button colors. Syncs across your devices.
 - Dynamic detection that follows X's frequent UI changes, so the theme keeps up when X renames or restyles its components.
 - No accounts, no tracking, no servers — settings stay in your browser via Chrome's storage.sync.
 
