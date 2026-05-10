@@ -96,4 +96,19 @@ describe("themeToCss", () => {
     expect(css).toContain('[data-testid="cellInnerDiv"] > div');
     expect(css).toMatch(/border-color:\s*#38444D\s*!important/i);
   });
+
+  it("preserves X's inline color on links (e.g. user names)", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('a[style^="color:"]');
+    expect(css).toContain('a[style*=" color:"]');
+    expect(css).toContain('[role="link"][style^="color:"]');
+    expect(css).toContain('[role="link"][style*=" color:"]');
+    expect(css).toMatch(/color:\s*inherit\s*!important/i);
+  });
+
+  it("recolors X-blue inline links (hashtags, mentions) with the link color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('a[style*="rgb(29, 155, 240)"]');
+    expect(css).toContain('[role="link"][style*="rgb(29, 155, 240)"]');
+  });
 });

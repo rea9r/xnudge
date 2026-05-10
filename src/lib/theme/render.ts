@@ -85,6 +85,18 @@ ${prefix} [role="link"] {
   color: ${link} !important;
 }
 
+${prefix} a[style*=" color:"],
+${prefix} a[style^="color:"],
+${prefix} [role="link"][style*=" color:"],
+${prefix} [role="link"][style^="color:"] {
+  color: inherit !important;
+}
+
+${prefix} a[style*="rgb(29, 155, 240)"],
+${prefix} [role="link"][style*="rgb(29, 155, 240)"] {
+  color: ${link} !important;
+}
+
 ${prefix} [data-testid="cellInnerDiv"] > div {
   border-color: ${border} !important;
 }`;
