@@ -4,6 +4,7 @@ import {
   type DimMatch,
   type TextMatch,
 } from "../lib/theme/classify";
+import { parseHex } from "../lib/theme/color";
 import type { ThemeColors } from "../lib/theme/types";
 
 export type AtomicRule = {
@@ -111,9 +112,6 @@ function resolveTextColor(match: TextMatch, colors: ThemeColors): string {
 }
 
 function rgbaFromHex(hex: string, alpha: number): string {
-  const cleaned = hex.replace(/^#/, "");
-  const r = parseInt(cleaned.slice(0, 2), 16);
-  const g = parseInt(cleaned.slice(2, 4), 16);
-  const b = parseInt(cleaned.slice(4, 6), 16);
+  const { r, g, b } = parseHex(hex);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }

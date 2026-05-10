@@ -1,3 +1,4 @@
+import { parseHex } from "./color";
 import type { Theme } from "./types";
 import {
   rgbCss,
@@ -8,17 +9,11 @@ import {
   X_PRIMARY_TEXT,
 } from "./x-colors";
 
-const HEX_RE = /^#?([0-9a-fA-F]{6})$/;
-
 export function hexToHslTriplet(hex: string): string {
-  const match = HEX_RE.exec(hex.trim());
-  if (!match) {
-    throw new Error(`Invalid hex color: ${hex}`);
-  }
-  const digits = match[1]!;
-  const r = parseInt(digits.slice(0, 2), 16) / 255;
-  const g = parseInt(digits.slice(2, 4), 16) / 255;
-  const b = parseInt(digits.slice(4, 6), 16) / 255;
+  const rgb = parseHex(hex);
+  const r = rgb.r / 255;
+  const g = rgb.g / 255;
+  const b = rgb.b / 255;
 
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
