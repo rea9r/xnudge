@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "description": "Customize X (Twitter) to your taste — a Chrome extension.",
+  "description": "Chrome extension to nudge X (Twitter) into a more comfortable look.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -5,7 +5,7 @@ export default defineManifest({
   manifest_version: 3,
   name: "xnudge",
   version: pkg.version,
-  description: "Customize X (Twitter) to your taste.",
+  description: "Nudge X (Twitter) into a more comfortable look.",
   homepage_url: "https://github.com/rea9r/xnudge",
   icons: {
     16: "icons/icon-16.png",
