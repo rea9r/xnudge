@@ -42,14 +42,14 @@ export function hexToHslTriplet(hex: string): string {
   return `${H} ${S}% ${L}%`;
 }
 
-export function themeToCss(theme: Theme): string {
+export function themeToCss(theme: Theme, prefix = "html"): string {
   const { background, modal, border, text, link } = theme.colors;
   const bg = hexToHslTriplet(background);
   const md = hexToHslTriplet(modal);
   const bd = hexToHslTriplet(border);
   const tx = hexToHslTriplet(text);
   const lk = hexToHslTriplet(link);
-  return `html {
+  return `${prefix} {
   --color-background: ${bg} !important;
   --background: ${bg} !important;
   --popover: ${md} !important;
@@ -59,22 +59,23 @@ export function themeToCss(theme: Theme): string {
   --color-brand: ${lk} !important;
 }
 
-body,
-#react-root,
-main[role="main"],
-[data-testid="primaryColumn"],
-[data-testid="primaryColumn"] header,
-[data-testid="primaryColumn"] section,
-[data-testid="sidebarColumn"],
-[data-testid="sidebarColumn"] section,
-[data-testid="sidebarColumn"] aside,
-[data-testid="sidebarColumn"] nav,
-[data-testid="cellInnerDiv"] > div {
+${prefix} body,
+${prefix} #react-root,
+${prefix} main[role="main"],
+${prefix} [data-testid="primaryColumn"],
+${prefix} [data-testid="primaryColumn"] header,
+${prefix} [data-testid="primaryColumn"] section,
+${prefix} [data-testid="sidebarColumn"],
+${prefix} [data-testid="sidebarColumn"] section,
+${prefix} [data-testid="sidebarColumn"] aside,
+${prefix} [data-testid="sidebarColumn"] nav,
+${prefix} [data-testid="cellInnerDiv"] > div,
+${prefix} [data-testid="SearchBox_Search_Input_Wrapper"] {
   background-color: ${background} !important;
 }
 
-[role="dialog"],
-[aria-modal="true"] {
+${prefix} [role="dialog"],
+${prefix} [aria-modal="true"] {
   background-color: ${modal} !important;
 }`;
 }

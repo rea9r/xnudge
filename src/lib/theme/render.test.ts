@@ -69,4 +69,17 @@ describe("themeToCss", () => {
     expect(css).toContain('[role="dialog"]');
     expect(css).toContain('[aria-modal="true"]');
   });
+
+  it("includes the search box wrapper selector", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[data-testid="SearchBox_Search_Input_Wrapper"]');
+  });
+
+  it("scopes everything under the supplied prefix", () => {
+    const css = themeToCss(dimNavy, 'html[data-xnudge-active="1"]');
+    expect(css.startsWith('html[data-xnudge-active="1"] {')).toBe(true);
+    expect(css).toContain('html[data-xnudge-active="1"] body');
+    expect(css).toContain('html[data-xnudge-active="1"] [role="dialog"]');
+    expect(css).not.toMatch(/^html \{/m);
+  });
 });
