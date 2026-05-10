@@ -82,4 +82,18 @@ describe("themeToCss", () => {
     expect(css).toContain('html[data-xnudge-active="1"] [role="dialog"]');
     expect(css).not.toMatch(/^html \{/m);
   });
+
+  it("recolors links with the link color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain("a,");
+    expect(css).toContain("a:visited,");
+    expect(css).toContain('[role="link"]');
+    expect(css).toMatch(/color:\s*#1D9BF0\s*!important/i);
+  });
+
+  it("repaints cell separators with the border color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[data-testid="cellInnerDiv"] > div');
+    expect(css).toMatch(/border-color:\s*#38444D\s*!important/i);
+  });
 });

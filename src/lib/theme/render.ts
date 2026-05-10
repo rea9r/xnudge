@@ -77,5 +77,15 @@ ${prefix} [data-testid="SearchBox_Search_Input_Wrapper"] {
 ${prefix} [role="dialog"],
 ${prefix} [aria-modal="true"] {
   background-color: ${modal} !important;
+}
+
+${prefix} a,
+${prefix} a:visited,
+${prefix} [role="link"] {
+  color: ${link} !important;
+}
+
+${prefix} [data-testid="cellInnerDiv"] > div {
+  border-color: ${border} !important;
 }`;
 }
