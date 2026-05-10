@@ -29,7 +29,7 @@ function applyAll(state: State): void {
 
   root.setAttribute(ACTIVE_ATTR, "1");
   applyTheme(preset, PREFIX);
-  applyDynamicOverrides(detectAtomicOverrides(PREFIX));
+  applyDynamicOverrides(detectAtomicOverrides(PREFIX, preset.colors));
 }
 
 function schedule(): void {

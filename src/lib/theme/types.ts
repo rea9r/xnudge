@@ -3,6 +3,7 @@ export type ThemeColors = {
   modal: string;
   border: string;
   text: string;
+  textMuted: string;
   link: string;
 };
 

@@ -111,4 +111,29 @@ describe("themeToCss", () => {
     expect(css).toContain('a[style*="rgb(29, 155, 240)"]');
     expect(css).toContain('[role="link"][style*="rgb(29, 155, 240)"]');
   });
+
+  it("paints body and #react-root with the text color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toMatch(
+      /html body,\s*html #react-root \{\s*color:\s*#E7EDF5\s*!important/i,
+    );
+  });
+
+  it("recolors X primary-text inline color with the text color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[style^="color: rgb(231, 233, 234)"]');
+    expect(css).toContain('[style*=" color: rgb(231, 233, 234)"]');
+    expect(css).toMatch(
+      /\[style\^="color: rgb\(231, 233, 234\)"\] \{\s*color:\s*#E7EDF5\s*!important/i,
+    );
+  });
+
+  it("recolors X muted-text inline color with the textMuted color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[style^="color: rgb(113, 118, 123)"]');
+    expect(css).toContain('[style*=" color: rgb(113, 118, 123)"]');
+    expect(css).toMatch(
+      /\[style\^="color: rgb\(113, 118, 123\)"\] \{\s*color:\s*#8B98A5\s*!important/i,
+    );
+  });
 });

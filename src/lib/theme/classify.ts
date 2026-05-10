@@ -2,12 +2,15 @@ export type DimKind = "navy" | "gray0" | "gray100" | "navy-translucent";
 
 export type DimMatch = {
   kind: DimKind;
-  color: string;
+  /** Original alpha, present only for translucent matches. */
+  alpha?: number;
 };
 
-export const DIM_NAVY = "#15202B";
-export const DIM_GRAY0 = "#1F2833";
-export const DIM_GRAY100 = "#38444D";
+export type TextKind = "primary" | "muted";
+
+export type TextMatch = {
+  kind: TextKind;
+};
 
 const RGB_RE =
   /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+)\s*)?\)$/i;
@@ -33,14 +36,24 @@ export function classifyBackground(input: string): DimMatch | null {
   if (a < 1) {
     if (a < 0.25) return null;
     if (r < 50 && g < 55 && b < 60) {
-      return { kind: "navy-translucent", color: `rgba(21, 32, 43, ${a})` };
+      return { kind: "navy-translucent", alpha: a };
     }
     return null;
   }
 
-  if (r + g + b < 15) return { kind: "navy", color: DIM_NAVY };
-  if (r < 25 && g < 30 && b < 35) return { kind: "navy", color: DIM_NAVY };
-  if (r < 35 && g < 40 && b < 45) return { kind: "gray0", color: DIM_GRAY0 };
-  if (r < 50 && g < 55 && b < 60) return { kind: "gray100", color: DIM_GRAY100 };
+  if (r + g + b < 15) return { kind: "navy" };
+  if (r < 25 && g < 30 && b < 35) return { kind: "navy" };
+  if (r < 35 && g < 40 && b < 45) return { kind: "gray0" };
+  if (r < 50 && g < 55 && b < 60) return { kind: "gray100" };
+  return null;
+}
+
+export function classifyTextColor(input: string): TextMatch | null {
+  const rgb = parseRgb(input);
+  if (!rgb) return null;
+  const { r, g, b, a } = rgb;
+  if (a < 1) return null;
+  if (r === 231 && g === 233 && b === 234) return { kind: "primary" };
+  if (r === 113 && g === 118 && b === 123) return { kind: "muted" };
   return null;
 }

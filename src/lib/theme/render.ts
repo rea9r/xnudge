@@ -43,7 +43,7 @@ export function hexToHslTriplet(hex: string): string {
 }
 
 export function themeToCss(theme: Theme, prefix = "html"): string {
-  const { background, modal, border, text, link } = theme.colors;
+  const { background, modal, border, text, textMuted, link } = theme.colors;
   const bg = hexToHslTriplet(background);
   const md = hexToHslTriplet(modal);
   const bd = hexToHslTriplet(border);
@@ -79,6 +79,11 @@ ${prefix} [aria-modal="true"] {
   background-color: ${modal} !important;
 }
 
+${prefix} body,
+${prefix} #react-root {
+  color: ${text} !important;
+}
+
 ${prefix} a,
 ${prefix} a:visited,
 ${prefix} [role="link"] {
@@ -95,6 +100,16 @@ ${prefix} [role="link"][style^="color:"] {
 ${prefix} a[style*="rgb(29, 155, 240)"],
 ${prefix} [role="link"][style*="rgb(29, 155, 240)"] {
   color: ${link} !important;
+}
+
+${prefix} [style*=" color: rgb(231, 233, 234)"],
+${prefix} [style^="color: rgb(231, 233, 234)"] {
+  color: ${text} !important;
+}
+
+${prefix} [style*=" color: rgb(113, 118, 123)"],
+${prefix} [style^="color: rgb(113, 118, 123)"] {
+  color: ${textMuted} !important;
 }
 
 ${prefix} [data-testid="cellInnerDiv"] > div {
