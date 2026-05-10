@@ -43,7 +43,16 @@ export function hexToHslTriplet(hex: string): string {
 }
 
 export function themeToCss(theme: Theme, prefix = "html"): string {
-  const { background, modal, border, text, textMuted, link } = theme.colors;
+  const {
+    background,
+    modal,
+    border,
+    text,
+    textMuted,
+    link,
+    buttonBg,
+    buttonText,
+  } = theme.colors;
   const bg = hexToHslTriplet(background);
   const md = hexToHslTriplet(modal);
   const bd = hexToHslTriplet(border);
@@ -110,6 +119,16 @@ ${prefix} [style^="color: rgb(231, 233, 234)"] {
 ${prefix} [style*=" color: rgb(113, 118, 123)"],
 ${prefix} [style^="color: rgb(113, 118, 123)"] {
   color: ${textMuted} !important;
+}
+
+${prefix} [style*=" background-color: rgb(239, 243, 244)"],
+${prefix} [style^="background-color: rgb(239, 243, 244)"] {
+  background-color: ${buttonBg} !important;
+}
+
+${prefix} [style*=" color: rgb(15, 20, 25)"],
+${prefix} [style^="color: rgb(15, 20, 25)"] {
+  color: ${buttonText} !important;
 }
 
 ${prefix} [data-testid="cellInnerDiv"] > div {

@@ -11,6 +11,8 @@ export const dimNavy: Preset = {
     text: "#E7EDF5",
     textMuted: "#8B98A5",
     link: "#1D9BF0",
+    buttonBg: "#EFF3F4",
+    buttonText: "#0F1419",
   },
 };
 
@@ -25,6 +27,8 @@ export const lightsOut: Preset = {
     text: "#E7E9EA",
     textMuted: "#71767B",
     link: "#1D9BF0",
+    buttonBg: "#EFF3F4",
+    buttonText: "#0F1419",
   },
 };
 
@@ -39,6 +43,8 @@ export const sepia: Preset = {
     text: "#2B2520",
     textMuted: "#8B7E68",
     link: "#8B5E3C",
+    buttonBg: "#2B2520",
+    buttonText: "#F5EBDC",
   },
 };
 
@@ -53,6 +59,8 @@ export const forest: Preset = {
     text: "#DCE8DA",
     textMuted: "#8FA38F",
     link: "#7FB069",
+    buttonBg: "#DCE8DA",
+    buttonText: "#1B2A20",
   },
 };
 

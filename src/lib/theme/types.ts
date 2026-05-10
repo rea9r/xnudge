@@ -5,6 +5,8 @@ export type ThemeColors = {
   text: string;
   textMuted: string;
   link: string;
+  buttonBg: string;
+  buttonText: string;
 };
 
 export type Theme = {

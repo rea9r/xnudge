@@ -18,7 +18,13 @@ describe("classifyBackground", () => {
     expect(classifyBackground("rgb(39, 44, 48)")).toEqual({ kind: "gray100" });
   });
 
-  it("returns null for light colors", () => {
+  it("classifies X primary-button background as button", () => {
+    expect(classifyBackground("rgb(239, 243, 244)")).toEqual({
+      kind: "button",
+    });
+  });
+
+  it("returns null for unrecognized light colors", () => {
     expect(classifyBackground("rgb(255, 255, 255)")).toBeNull();
     expect(classifyBackground("rgb(80, 80, 80)")).toBeNull();
   });
@@ -61,6 +67,10 @@ describe("classifyTextColor", () => {
 
   it("classifies X muted text rgb as muted", () => {
     expect(classifyTextColor("rgb(113, 118, 123)")).toEqual({ kind: "muted" });
+  });
+
+  it("classifies X on-button text rgb as on-button", () => {
+    expect(classifyTextColor("rgb(15, 20, 25)")).toEqual({ kind: "on-button" });
   });
 
   it("returns null for unrecognized colors", () => {

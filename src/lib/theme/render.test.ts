@@ -136,4 +136,26 @@ describe("themeToCss", () => {
       /\[style\^="color: rgb\(113, 118, 123\)"\] \{\s*color:\s*#8B98A5\s*!important/i,
     );
   });
+
+  it("recolors X button-bg inline color with the buttonBg color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain(
+      '[style^="background-color: rgb(239, 243, 244)"]',
+    );
+    expect(css).toContain(
+      '[style*=" background-color: rgb(239, 243, 244)"]',
+    );
+    expect(css).toMatch(
+      /\[style\^="background-color: rgb\(239, 243, 244\)"\] \{\s*background-color:\s*#EFF3F4\s*!important/i,
+    );
+  });
+
+  it("recolors X on-button text inline color with the buttonText color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[style^="color: rgb(15, 20, 25)"]');
+    expect(css).toContain('[style*=" color: rgb(15, 20, 25)"]');
+    expect(css).toMatch(
+      /\[style\^="color: rgb\(15, 20, 25\)"\] \{\s*color:\s*#0F1419\s*!important/i,
+    );
+  });
 });

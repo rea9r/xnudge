@@ -1,4 +1,9 @@
-export type DimKind = "navy" | "gray0" | "gray100" | "navy-translucent";
+export type DimKind =
+  | "navy"
+  | "gray0"
+  | "gray100"
+  | "navy-translucent"
+  | "button";
 
 export type DimMatch = {
   kind: DimKind;
@@ -6,7 +11,7 @@ export type DimMatch = {
   alpha?: number;
 };
 
-export type TextKind = "primary" | "muted";
+export type TextKind = "primary" | "muted" | "on-button";
 
 export type TextMatch = {
   kind: TextKind;
@@ -45,6 +50,7 @@ export function classifyBackground(input: string): DimMatch | null {
   if (r < 25 && g < 30 && b < 35) return { kind: "navy" };
   if (r < 35 && g < 40 && b < 45) return { kind: "gray0" };
   if (r < 50 && g < 55 && b < 60) return { kind: "gray100" };
+  if (r === 239 && g === 243 && b === 244) return { kind: "button" };
   return null;
 }
 
@@ -55,5 +61,6 @@ export function classifyTextColor(input: string): TextMatch | null {
   if (a < 1) return null;
   if (r === 231 && g === 233 && b === 234) return { kind: "primary" };
   if (r === 113 && g === 118 && b === 123) return { kind: "muted" };
+  if (r === 15 && g === 20 && b === 25) return { kind: "on-button" };
   return null;
 }

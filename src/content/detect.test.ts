@@ -11,6 +11,8 @@ const dimColors: ThemeColors = {
   text: "#E7EDF5",
   textMuted: "#8B98A5",
   link: "#1D9BF0",
+  buttonBg: "#EFF3F4",
+  buttonText: "#0F1419",
 };
 
 const sepiaColors: ThemeColors = {
@@ -20,6 +22,8 @@ const sepiaColors: ThemeColors = {
   text: "#2B2520",
   textMuted: "#8B7E68",
   link: "#8B5E3C",
+  buttonBg: "#2B2520",
+  buttonText: "#F5EBDC",
 };
 
 describe("buildAtomicOverrides", () => {
@@ -191,6 +195,23 @@ describe("buildAtomicOverrides", () => {
     );
     expect(out).toEqual([
       `${PREFIX} .r-combined { background-color: #F5EBDC !important; color: #2B2520 !important; }`,
+    ]);
+  });
+
+  it("repaints X button surface with the active preset's button colors", () => {
+    const out = buildAtomicOverrides(
+      [
+        {
+          selector: ".r-btn",
+          backgroundColor: "rgb(239, 243, 244)",
+          color: "rgb(15, 20, 25)",
+        },
+      ],
+      PREFIX,
+      sepiaColors,
+    );
+    expect(out).toEqual([
+      `${PREFIX} .r-btn { background-color: #2B2520 !important; color: #F5EBDC !important; }`,
     ]);
   });
 });

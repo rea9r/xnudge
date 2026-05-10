@@ -94,6 +94,8 @@ function resolveBgColor(match: DimMatch, colors: ThemeColors): string {
       return colors.border;
     case "navy-translucent":
       return rgbaFromHex(colors.background, match.alpha ?? 1);
+    case "button":
+      return colors.buttonBg;
   }
 }
 
@@ -103,6 +105,8 @@ function resolveTextColor(match: TextMatch, colors: ThemeColors): string {
       return colors.text;
     case "muted":
       return colors.textMuted;
+    case "on-button":
+      return colors.buttonText;
   }
 }
 
