@@ -1,5 +1,5 @@
 import { getState, onStateChanged, type State } from "../lib/storage";
-import { getPresetById } from "../lib/theme/presets";
+import { resolveTheme } from "../lib/theme/resolve";
 import { applyDynamicOverrides, applyTheme, clearTheme } from "./apply";
 import { detectAtomicOverrides } from "./detect";
 
@@ -20,16 +20,16 @@ function applyAll(state: State): void {
     return;
   }
 
-  const preset = getPresetById(state.presetId);
-  if (!preset) {
+  const theme = resolveTheme(state.presetId, state.customColors);
+  if (!theme) {
     root.removeAttribute(ACTIVE_ATTR);
     clearTheme();
     return;
   }
 
   root.setAttribute(ACTIVE_ATTR, "1");
-  applyTheme(preset, PREFIX);
-  applyDynamicOverrides(detectAtomicOverrides(PREFIX, preset.colors));
+  applyTheme(theme, PREFIX);
+  applyDynamicOverrides(detectAtomicOverrides(PREFIX, theme.colors));
 }
 
 function schedule(): void {

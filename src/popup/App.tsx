@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   DEFAULT_STATE,
   getState,
@@ -6,20 +6,47 @@ import {
   setState,
 } from "../lib/storage";
 import { presets } from "../lib/theme/presets";
+import { CUSTOM_PRESET_ID } from "../lib/theme/resolve";
+import type { ThemeColors } from "../lib/theme/types";
+
+const SAVE_DEBOUNCE_MS = 150;
+
+const COLOR_FIELDS: ReadonlyArray<{ key: keyof ThemeColors; label: string }> = [
+  { key: "background", label: "Background" },
+  { key: "modal", label: "Modal" },
+  { key: "border", label: "Border" },
+  { key: "text", label: "Text" },
+  { key: "textMuted", label: "Muted text" },
+  { key: "link", label: "Link" },
+  { key: "buttonBg", label: "Button" },
+  { key: "buttonText", label: "Button text" },
+];
 
 export function App() {
   const [enabled, setEnabled] = useState<boolean>(DEFAULT_STATE.enabled);
   const [presetId, setPresetId] = useState<string>(DEFAULT_STATE.presetId);
+  const [customColors, setCustomColors] = useState<ThemeColors>(
+    DEFAULT_STATE.customColors,
+  );
+  const saveTimer = useRef<number | null>(null);
 
   useEffect(() => {
     void getState().then((s) => {
       setEnabled(s.enabled);
       setPresetId(s.presetId);
+      setCustomColors(s.customColors);
     });
     return onStateChanged((s) => {
       setEnabled(s.enabled);
       setPresetId(s.presetId);
+      setCustomColors(s.customColors);
     });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (saveTimer.current !== null) window.clearTimeout(saveTimer.current);
+    };
   }, []);
 
   const toggle = (): void => {
@@ -33,6 +60,18 @@ export function App() {
     setPresetId(id);
     void setState({ presetId: id });
   };
+
+  const updateColor = (key: keyof ThemeColors, value: string): void => {
+    const next = { ...customColors, [key]: value.toUpperCase() };
+    setCustomColors(next);
+    if (saveTimer.current !== null) window.clearTimeout(saveTimer.current);
+    saveTimer.current = window.setTimeout(() => {
+      saveTimer.current = null;
+      void setState({ customColors: next });
+    }, SAVE_DEBOUNCE_MS);
+  };
+
+  const customSelected = presetId === CUSTOM_PRESET_ID;
 
   return (
     <main className="popup">
@@ -95,7 +134,57 @@ export function App() {
             </li>
           );
         })}
+        <li>
+          <button
+            type="button"
+            className="preset"
+            role="radio"
+            aria-checked={customSelected}
+            onClick={() => selectPreset(CUSTOM_PRESET_ID)}
+            data-selected={customSelected}
+          >
+            <span className="swatches" aria-hidden="true">
+              <span
+                className="swatch"
+                style={{ background: customColors.background }}
+              />
+              <span
+                className="swatch"
+                style={{ background: customColors.text }}
+              />
+              <span
+                className="swatch"
+                style={{ background: customColors.link }}
+              />
+            </span>
+            <span className="preset-text">
+              <span className="preset-label">Custom</span>
+              <span className="preset-description">
+                Pick your own colors below.
+              </span>
+            </span>
+          </button>
+        </li>
       </ul>
+
+      {customSelected && (
+        <section className="editor" aria-label="Custom colors">
+          {COLOR_FIELDS.map(({ key, label }) => (
+            <label key={key} className="editor-row">
+              <span className="editor-label">{label}</span>
+              <span className="editor-controls">
+                <input
+                  type="color"
+                  value={customColors[key]}
+                  onChange={(e) => updateColor(key, e.target.value)}
+                  aria-label={label}
+                />
+                <span className="editor-hex">{customColors[key]}</span>
+              </span>
+            </label>
+          ))}
+        </section>
+      )}
     </main>
   );
 }
