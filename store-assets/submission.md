@@ -18,7 +18,7 @@ Required to inject the theme stylesheet into x.com and twitter.com pages. Withou
 
 ## Category
 
-Productivity. (The "Themes" category is for browser themes, not page recolor extensions.)
+Functionality & UI. (Modifies how a website looks. The "Themes" category is for browser-wide themes, not page recolor extensions.)
 
 ## Privacy practices
 
