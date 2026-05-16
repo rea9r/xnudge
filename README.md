@@ -4,6 +4,8 @@
 
 Chrome extension to nudge X (Twitter) into a more comfortable look.
 
+[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/xnudge/hjbnpdlgmndnlpnobpdpkaalblehbemg)
+
 ![xnudge popup with theme presets](store-assets/screenshots/screenshot-options.png)
 
 ## What it does
