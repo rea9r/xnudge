@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "zip": "npm run build && cd dist && zip -r ../xnudge.zip . -x '.DS_Store'",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -33,6 +32,7 @@
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.1",
     "vite": "^5.4.11",
+    "vite-plugin-zip-pack": "^1.2.4",
     "vitest": "^2.1.8"
   }
 }

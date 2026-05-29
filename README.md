@@ -20,8 +20,7 @@ Chrome extension to nudge X (Twitter) into a more comfortable look.
 ```bash
 npm install
 npm run dev       # Vite dev server with HMR via @crxjs/vite-plugin
-npm run build     # production build to dist/
-npm run zip       # build and bundle dist/ into xnudge.zip for the Web Store
+npm run build     # production build to dist/ (also writes xnudge.zip for the Web Store)
 npm run typecheck
 npm run lint
 npm run format
