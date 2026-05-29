@@ -6,7 +6,7 @@ export const dimNavy: Preset = {
   description: "The classic dim navy palette.",
   colors: {
     background: "#15202B",
-    modal: "#15202B",
+    modal: "#22303C",
     border: "#38444D",
     text: "#E7EDF5",
     textMuted: "#8B98A5",
