@@ -35,7 +35,7 @@ export const lightsOut: Preset = {
 export const sepia: Preset = {
   id: "sepia",
   label: "Sepia",
-  description: "Warm cream, easy on the eyes.",
+  description: "Terracotta on warm cream.",
   colors: {
     background: "#F5EBDC",
     modal: "#FBF4E8",
