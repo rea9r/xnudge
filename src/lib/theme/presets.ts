@@ -42,9 +42,9 @@ export const sepia: Preset = {
     border: "#D4C4A8",
     text: "#2B2520",
     textMuted: "#8B7E68",
-    link: "#8B5E3C",
-    buttonBg: "#2B2520",
-    buttonText: "#F5EBDC",
+    link: "#CB6D4F",
+    buttonBg: "#CB6D4F",
+    buttonText: "#FFFFFF",
   },
 };
 
@@ -64,7 +64,46 @@ export const forest: Preset = {
   },
 };
 
-export const presets: readonly Preset[] = [dimNavy, lightsOut, sepia, forest];
+export const lavender: Preset = {
+  id: "lavender",
+  label: "Lavender",
+  description: "White background with a soft purple accent.",
+  colors: {
+    background: "#FFFFFF",
+    modal: "#F4F1FB",
+    border: "#E3DEF0",
+    text: "#2A2440",
+    textMuted: "#7A7390",
+    link: "#7C5CFF",
+    buttonBg: "#7C5CFF",
+    buttonText: "#FFFFFF",
+  },
+};
+
+export const sky: Preset = {
+  id: "sky",
+  label: "Sky",
+  description: "White background with a muted blue accent.",
+  colors: {
+    background: "#FBFDFE",
+    modal: "#EFF4FA",
+    border: "#DCE6F0",
+    text: "#25303A",
+    textMuted: "#79899A",
+    link: "#6E9CC4",
+    buttonBg: "#6E9CC4",
+    buttonText: "#FFFFFF",
+  },
+};
+
+export const presets: readonly Preset[] = [
+  dimNavy,
+  lightsOut,
+  sepia,
+  forest,
+  lavender,
+  sky,
+];
 
 export function getPresetById(id: string): Preset | undefined {
   return presets.find((preset) => preset.id === id);
