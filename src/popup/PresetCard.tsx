@@ -23,19 +23,24 @@ export function PresetCard({
       className="preset"
       role="radio"
       aria-checked={selected}
+      aria-label={label}
+      title={description}
       onClick={onSelect}
       data-selected={selected}
     >
       <span className="swatches" aria-hidden="true">
-        <span className="swatch" style={{ background }} />
-        <span className="swatch" style={{ background: text }} />
-        <span className="swatch" style={{ background: link }} />
+        <span className="swatch" style={{ backgroundColor: background }} />
+        <span className="swatch" style={{ backgroundColor: text }} />
+        <span className="swatch" style={{ backgroundColor: link }} />
       </span>
       <span className="preset-text">
         <span className="preset-label">{label}</span>
         {description && (
           <span className="preset-description">{description}</span>
         )}
+      </span>
+      <span className="preset-check" aria-hidden="true">
+        {selected ? "✓" : ""}
       </span>
     </button>
   );

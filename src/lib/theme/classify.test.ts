@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { classifyBackground, classifyTextColor } from "./classify";
+import {
+  classifyBackground,
+  classifyBorderColor,
+  classifyTextColor,
+} from "./classify";
 
 describe("classifyBackground", () => {
   it("classifies pure black as navy", () => {
@@ -99,5 +103,34 @@ describe("classifyTextColor", () => {
     expect(classifyTextColor("inherit")).toBeNull();
     expect(classifyTextColor("")).toBeNull();
     expect(classifyTextColor("#E7E9EA")).toBeNull();
+  });
+});
+
+describe("classifyBorderColor", () => {
+  it("classifies X's default dark divider as border", () => {
+    expect(classifyBorderColor("rgb(47, 51, 54)")).toEqual({ kind: "border" });
+  });
+
+  it("classifies the Dim divider as border", () => {
+    expect(classifyBorderColor("rgb(56, 68, 77)")).toEqual({ kind: "border" });
+  });
+
+  it("ignores the universal black border reset", () => {
+    expect(classifyBorderColor("rgb(0, 0, 0)")).toBeNull();
+  });
+
+  it("ignores light borders", () => {
+    expect(classifyBorderColor("rgb(239, 243, 244)")).toBeNull();
+    expect(classifyBorderColor("rgb(255, 255, 255)")).toBeNull();
+  });
+
+  it("ignores saturated colors within the brightness band", () => {
+    expect(classifyBorderColor("rgb(90, 40, 40)")).toBeNull();
+  });
+
+  it("returns null for translucent and unparseable input", () => {
+    expect(classifyBorderColor("rgba(47, 51, 54, 0.5)")).toBeNull();
+    expect(classifyBorderColor("transparent")).toBeNull();
+    expect(classifyBorderColor("")).toBeNull();
   });
 });

@@ -67,7 +67,7 @@ export const forest: Preset = {
 export const lavender: Preset = {
   id: "lavender",
   label: "Lavender",
-  description: "White background with a soft purple accent.",
+  description: "Soft purple on white.",
   colors: {
     background: "#FFFFFF",
     modal: "#F4F1FB",
@@ -80,19 +80,19 @@ export const lavender: Preset = {
   },
 };
 
-export const sky: Preset = {
-  id: "sky",
-  label: "Sky",
-  description: "White background with a muted blue accent.",
+export const frost: Preset = {
+  id: "frost",
+  label: "Frost",
+  description: "Cool blue on crisp white.",
   colors: {
-    background: "#FBFDFE",
-    modal: "#EFF4FA",
-    border: "#DCE6F0",
-    text: "#25303A",
-    textMuted: "#79899A",
-    link: "#6E9CC4",
-    buttonBg: "#6E9CC4",
-    buttonText: "#FFFFFF",
+    background: "#FFFFFF",
+    modal: "#FBFBFC",
+    border: "#EDEEF0",
+    text: "#16181C",
+    textMuted: "#5B6B7A",
+    link: "#5BB8D4",
+    buttonBg: "#CDD3D9",
+    buttonText: "#16181C",
   },
 };
 
@@ -102,7 +102,7 @@ export const presets: readonly Preset[] = [
   sepia,
   forest,
   lavender,
-  sky,
+  frost,
 ];
 
 export function getPresetById(id: string): Preset | undefined {

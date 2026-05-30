@@ -29,6 +29,10 @@ export type TextMatch = {
   kind: TextKind;
 };
 
+export type BorderMatch = {
+  kind: "border";
+};
+
 const RGB_RE =
   /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+)\s*)?\)$/i;
 
@@ -80,4 +84,20 @@ export function classifyTextColor(input: string): TextMatch | null {
   if (matchesRgb(rgb, X_MUTED_TEXT)) return { kind: "muted" };
   if (matchesRgb(rgb, X_ON_BUTTON_TEXT)) return { kind: "on-button" };
   return null;
+}
+
+export function classifyBorderColor(input: string): BorderMatch | null {
+  const rgb = parseRgb(input);
+  if (!rgb) return null;
+  if (rgb.a < 1) return null;
+  const { r, g, b } = rgb;
+  // X's dark-theme dividers and module borders are low-saturation greys in the
+  // ~#2F3336 (47,51,54) to ~#38444D (56,68,77) band. Match that band so the
+  // border follows the active preset. Pure black is skipped (it's the universal
+  // `border: 0 solid black` reset), and lighter or saturated colors are left alone.
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  if (min < 30 || max > 95) return null;
+  if (max - min > 35) return null;
+  return { kind: "border" };
 }

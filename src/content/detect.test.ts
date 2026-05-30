@@ -229,4 +229,24 @@ describe("buildAtomicOverrides", () => {
       `${PREFIX} .r-h2:hover { background-color: #1A8CD8 !important; }`,
     ]);
   });
+
+  it("repaints X's dark atomic border color with the preset border", () => {
+    const out = buildAtomicOverrides(
+      [{ selector: ".r-bdr", backgroundColor: "", borderColor: "rgb(47, 51, 54)" }],
+      PREFIX,
+      sepiaColors,
+    );
+    expect(out).toEqual([
+      `${PREFIX} .r-bdr { border-color: #D4C4A8 !important; }`,
+    ]);
+  });
+
+  it("ignores atomic border colors that aren't X dividers", () => {
+    const out = buildAtomicOverrides(
+      [{ selector: ".r-bdr", backgroundColor: "", borderColor: "rgb(0, 0, 0)" }],
+      PREFIX,
+      sepiaColors,
+    );
+    expect(out).toEqual([]);
+  });
 });

@@ -1,5 +1,6 @@
 import {
   classifyBackground,
+  classifyBorderColor,
   classifyTextColor,
   type DimMatch,
   type TextMatch,
@@ -11,6 +12,7 @@ export type AtomicRule = {
   selector: string;
   backgroundColor: string;
   color?: string;
+  borderColor?: string;
 };
 
 const ATOMIC_RE = /^\.r-[a-z0-9]+$/i;
@@ -46,6 +48,10 @@ export function buildAtomicOverrides(
       }
     }
 
+    if (rule.borderColor && classifyBorderColor(rule.borderColor)) {
+      decls.push(`border-color: ${colors.border} !important`);
+    }
+
     if (decls.length === 0) continue;
     out.push(`${prefix} ${sel} { ${decls.join("; ")}; }`);
     seen.add(sel);
@@ -67,15 +73,33 @@ export function scanStylesheets(): AtomicRule[] {
       if (!(rule instanceof CSSStyleRule)) continue;
       const bg = rule.style.backgroundColor;
       const color = rule.style.color;
-      if (!bg && !color) continue;
+      const borderColor = readBorderColor(rule.style);
+      if (!bg && !color && !borderColor) continue;
       result.push({
         selector: rule.selectorText,
         backgroundColor: bg,
         color,
+        borderColor,
       });
     }
   }
   return result;
+}
+
+/**
+ * Reads a single representative border color from a rule. Longhands come first
+ * because they always hold a single value; X frequently sets only
+ * `border-bottom-color` on dividers, while boxes use the `border` shorthand.
+ */
+function readBorderColor(style: CSSStyleDeclaration): string {
+  return (
+    style.borderTopColor ||
+    style.borderRightColor ||
+    style.borderBottomColor ||
+    style.borderLeftColor ||
+    style.borderColor ||
+    ""
+  );
 }
 
 export function detectAtomicOverrides(
