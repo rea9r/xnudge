@@ -158,4 +158,13 @@ describe("themeToCss", () => {
       /\[style\^="color: rgb\(15, 20, 25\)"\] \{\s*color:\s*#0F1419\s*!important/i,
     );
   });
+
+  it("recolors the light button color used as a foreground (icons, outline buttons) with the text color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[style^="color: rgb(239, 243, 244)"]');
+    expect(css).toContain('[style*=" color: rgb(239, 243, 244)"]');
+    expect(css).toMatch(
+      /\[style\^="color: rgb\(239, 243, 244\)"\] \{\s*color:\s*#E7EDF5\s*!important/i,
+    );
+  });
 });

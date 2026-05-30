@@ -119,6 +119,11 @@ ${prefix} [style^="color: ${rgbCss(X_PRIMARY_TEXT)}"] {
   color: ${text} !important;
 }
 
+${prefix} [style*=" color: ${rgbCss(X_BUTTON_BG)}"],
+${prefix} [style^="color: ${rgbCss(X_BUTTON_BG)}"] {
+  color: ${text} !important;
+}
+
 ${prefix} [style*=" color: ${rgbCss(X_MUTED_TEXT)}"],
 ${prefix} [style^="color: ${rgbCss(X_MUTED_TEXT)}"] {
   color: ${textMuted} !important;
