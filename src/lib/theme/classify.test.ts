@@ -40,6 +40,12 @@ describe("classifyBackground", () => {
     });
   });
 
+  it("classifies X brand blue as brand", () => {
+    expect(classifyBackground("rgb(29, 155, 240)")).toEqual({
+      kind: "brand",
+    });
+  });
+
   it("returns null for unrecognized light colors", () => {
     expect(classifyBackground("rgb(255, 255, 255)")).toBeNull();
     expect(classifyBackground("rgb(80, 80, 80)")).toBeNull();

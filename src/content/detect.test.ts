@@ -230,6 +230,17 @@ describe("buildAtomicOverrides", () => {
     ]);
   });
 
+  it("repaints X's brand-blue surface with the active preset's link color", () => {
+    const out = buildAtomicOverrides(
+      [{ selector: ".r-brand", backgroundColor: "rgb(29, 155, 240)" }],
+      PREFIX,
+      sepiaColors,
+    );
+    expect(out).toEqual([
+      `${PREFIX} .r-brand { background-color: #8B5E3C !important; }`,
+    ]);
+  });
+
   it("repaints X's dark atomic border color with the preset border", () => {
     const out = buildAtomicOverrides(
       [{ selector: ".r-bdr", backgroundColor: "", borderColor: "rgb(47, 51, 54)" }],

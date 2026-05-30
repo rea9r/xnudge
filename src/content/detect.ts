@@ -125,6 +125,8 @@ function resolveBgColor(match: DimMatch, colors: ThemeColors): string {
       return darken(colors.buttonBg, 0.1);
     case "link-hover":
       return darken(colors.link, 0.1);
+    case "brand":
+      return colors.link;
   }
 }
 
