@@ -1,5 +1,7 @@
 import {
+  X_BRAND_BLUE_HOVER,
   X_BUTTON_BG,
+  X_BUTTON_BG_HOVER,
   X_MUTED_TEXT,
   X_ON_BUTTON_TEXT,
   X_PRIMARY_TEXT,
@@ -11,7 +13,9 @@ export type DimKind =
   | "gray0"
   | "gray100"
   | "navy-translucent"
-  | "button";
+  | "button"
+  | "button-hover"
+  | "link-hover";
 
 export type DimMatch = {
   kind: DimKind;
@@ -63,6 +67,8 @@ export function classifyBackground(input: string): DimMatch | null {
   if (r < 35 && g < 40 && b < 45) return { kind: "gray0" };
   if (r < 50 && g < 55 && b < 60) return { kind: "gray100" };
   if (matchesRgb(rgb, X_BUTTON_BG)) return { kind: "button" };
+  if (matchesRgb(rgb, X_BUTTON_BG_HOVER)) return { kind: "button-hover" };
+  if (matchesRgb(rgb, X_BRAND_BLUE_HOVER)) return { kind: "link-hover" };
   return null;
 }
 

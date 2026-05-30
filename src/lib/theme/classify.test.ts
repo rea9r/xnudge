@@ -24,6 +24,18 @@ describe("classifyBackground", () => {
     });
   });
 
+  it("classifies the white-button hover background as button-hover", () => {
+    expect(classifyBackground("rgb(215, 219, 220)")).toEqual({
+      kind: "button-hover",
+    });
+  });
+
+  it("classifies the brand-blue hover background as link-hover", () => {
+    expect(classifyBackground("rgb(26, 140, 216)")).toEqual({
+      kind: "link-hover",
+    });
+  });
+
   it("returns null for unrecognized light colors", () => {
     expect(classifyBackground("rgb(255, 255, 255)")).toBeNull();
     expect(classifyBackground("rgb(80, 80, 80)")).toBeNull();

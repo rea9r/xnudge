@@ -214,4 +214,19 @@ describe("buildAtomicOverrides", () => {
       `${PREFIX} .r-btn { background-color: #2B2520 !important; color: #F5EBDC !important; }`,
     ]);
   });
+
+  it("darkens button and brand-blue hover backgrounds", () => {
+    const out = buildAtomicOverrides(
+      [
+        { selector: ".r-h1:hover", backgroundColor: "rgb(215, 219, 220)" },
+        { selector: ".r-h2:hover", backgroundColor: "rgb(26, 140, 216)" },
+      ],
+      PREFIX,
+      dimColors,
+    );
+    expect(out).toEqual([
+      `${PREFIX} .r-h1:hover { background-color: #D7DBDC !important; }`,
+      `${PREFIX} .r-h2:hover { background-color: #1A8CD8 !important; }`,
+    ]);
+  });
 });

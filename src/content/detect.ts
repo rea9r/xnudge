@@ -4,7 +4,7 @@ import {
   type DimMatch,
   type TextMatch,
 } from "../lib/theme/classify";
-import { parseHex } from "../lib/theme/color";
+import { darken, parseHex } from "../lib/theme/color";
 import type { ThemeColors } from "../lib/theme/types";
 
 export type AtomicRule = {
@@ -97,6 +97,10 @@ function resolveBgColor(match: DimMatch, colors: ThemeColors): string {
       return rgbaFromHex(colors.background, match.alpha ?? 1);
     case "button":
       return colors.buttonBg;
+    case "button-hover":
+      return darken(colors.buttonBg, 0.1);
+    case "link-hover":
+      return darken(colors.link, 0.1);
   }
 }
 
