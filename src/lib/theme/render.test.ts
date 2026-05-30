@@ -106,10 +106,14 @@ describe("themeToCss", () => {
     expect(css).toMatch(/color:\s*inherit\s*!important/i);
   });
 
-  it("recolors X-blue inline links (hashtags, mentions) with the link color", () => {
+  it("recolors X-blue inline text (hashtags, mentions, Show more/posts) with the link color", () => {
     const css = themeToCss(dimNavy);
     expect(css).toContain('a[style*="rgb(29, 155, 240)"]');
-    expect(css).toContain('[role="link"][style*="rgb(29, 155, 240)"]');
+    expect(css).toContain('[style^="color: rgb(29, 155, 240)"]');
+    expect(css).toContain('[style*=" color: rgb(29, 155, 240)"]');
+    expect(css).toMatch(
+      /\[style\^="color: rgb\(29, 155, 240\)"\] \{\s*color:\s*#1D9BF0\s*!important/i,
+    );
   });
 
   it("paints body and #react-root with the text color", () => {
@@ -165,6 +169,15 @@ describe("themeToCss", () => {
     expect(css).toContain('[style*=" color: rgb(239, 243, 244)"]');
     expect(css).toMatch(
       /\[style\^="color: rgb\(239, 243, 244\)"\] \{\s*color:\s*#E7EDF5\s*!important/i,
+    );
+  });
+
+  it("recolors X-blue button backgrounds (e.g. Subscribe) with the link color", () => {
+    const css = themeToCss(dimNavy);
+    expect(css).toContain('[style^="background-color: rgb(29, 155, 240)"]');
+    expect(css).toContain('[style*=" background-color: rgb(29, 155, 240)"]');
+    expect(css).toMatch(
+      /\[style\^="background-color: rgb\(29, 155, 240\)"\] \{\s*background-color:\s*#1D9BF0\s*!important/i,
     );
   });
 });

@@ -110,8 +110,15 @@ ${prefix} [role="link"][style^="color:"] {
 }
 
 ${prefix} a[style*="${rgbCss(X_BRAND_BLUE)}"],
-${prefix} [role="link"][style*="${rgbCss(X_BRAND_BLUE)}"] {
+${prefix} [role="link"][style*="${rgbCss(X_BRAND_BLUE)}"],
+${prefix} [style*=" color: ${rgbCss(X_BRAND_BLUE)}"],
+${prefix} [style^="color: ${rgbCss(X_BRAND_BLUE)}"] {
   color: ${link} !important;
+}
+
+${prefix} [style*=" background-color: ${rgbCss(X_BRAND_BLUE)}"],
+${prefix} [style^="background-color: ${rgbCss(X_BRAND_BLUE)}"] {
+  background-color: ${link} !important;
 }
 
 ${prefix} [style*=" color: ${rgbCss(X_PRIMARY_TEXT)}"],
